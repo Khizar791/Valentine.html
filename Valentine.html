@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For You 💘</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#ff5fa2,#7a0030);
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+.card{
+  width:min(92vw,520px);
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:30px 22px;
+  box-shadow:0 18px 60px rgba(0,0,0,0.35);
+  z-index:2;
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.02)}
+}
+
+h1{font-size:2.1rem;margin-bottom:10px}
+p{font-size:1.05rem;opacity:.95;margin-bottom:18px;line-height:1.5}
+
+.name{font-weight:700;color:#fff3a6}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:none;
+  padding:12px 18px;
+  border-radius:999px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.25s ease;
+  font-weight:600;
+}
+
+.yes{
+  background:white;
+  color:#7a0030;
+}
+.yes:hover{transform:scale(1.1)}
+
+.no{
+  background:rgba(0,0,0,0.25);
+  color:white;
+  border:1px solid rgba(255,255,255,0.3);
+  position:relative;
+}
+
+.message{
+  margin-top:20px;
+  font-size:1.15rem;
+  font-weight:600;
+  min-height:28px;
+}
+
+.footer{margin-top:12px;font-size:.9rem;opacity:.8}
+
+/* hearts */
+.heart{
+  position:absolute;
+  width:18px;height:18px;
+  background:rgba(255,255,255,.85);
+  transform:rotate(45deg);
+  animation:floatUp linear infinite;
+  border-radius:4px;
+  opacity:.7;
+}
+
+.heart::before,.heart::after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  background:rgba(255,255,255,.85);
+  border-radius:50%;
+}
+.heart::before{left:-9px}
+.heart::after{top:-9px}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(45deg);opacity:0}
+  10%{opacity:.8}
+  100%{transform:translateY(-120vh) rotate(45deg);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Hey <span class="name" id="valentineName">My Love</span> 💘</h1>
+  <p>
+    I don’t need a perfect moment…<br>
+    I just need <b>you</b>.<br><br>
+    Will you be my Valentine? 🥺🌹
+  </p>
+
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">YES 😭💖</button>
+    <button class="no" id="noBtn" onmouseover="runAway()">No 😌</button>
+  </div>
+
+  <div class="message" id="msg"></div>
+  <div class="footer">Made with love 💗</div>
+</div>
+
+<script>
+const name = "Tahfeez"; // change name here
+document.getElementById("valentineName").innerText = name;
+
+const msg = document.getElementById("msg");
+const noBtn = document.getElementById("noBtn");
+
+function sayYes(){
+  msg.innerHTML = "YAYYYYY 😭💍💖 I LOVE YOUUUU FOREVER!!!";
+  for(let i=0;i<40;i++){
+    setTimeout(createHeart,i*80);
+  }
+}
+
+function runAway(){
+  const x=Math.random()*(window.innerWidth-120);
+  const y=Math.random()*(window.innerHeight-60);
+  noBtn.style.position="absolute";
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
+
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+
+// background heart rain
+setInterval(createHeart,500);
+</script>
+
+</body>
+  </html>
